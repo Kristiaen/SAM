@@ -25,11 +25,12 @@
         <Button x:Name="OKButton" Content="OK" Margin="0,0,0,10" Click="OKButton_Click" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="85" />
         <Button x:Name="CancelButton" Content="Cancel"  Click="CancelButton_Click" Margin="0,0,35,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="85" />
         <Border Height="21" Margin="0,0,0,0" VerticalAlignment="Top"/>
-        <TabControl Background="{x:Null}" VerticalAlignment="Top" Height="210">
+        <TabControl Background="{x:Null}" VerticalAlignment="Top" Height="214">
             <TabItem Header="General" Foreground="{DynamicResource xctkForegoundBrush}">
                 <Grid>
                     <Label x:Name="NumPerRowLabel" Content="Accounts Per Row" HorizontalAlignment="Left" Margin="228,7,0,0" VerticalAlignment="Top"/>
                     <xctk:IntegerUpDown x:Name="accountsPerRowSpinBox" Minimum="1" Maximum="999" HorizontalAlignment="Left" Height="23" Margin="175,10,0,0" VerticalAlignment="Top" Width="50" TextAlignment="Center" ToolTip="Number of accounts displayed per row" Foreground="{DynamicResource xctkForegoundBrush}"/>
+					<CheckBox x:Name="bannedStatsCheckBox" Content="Show banned int" HorizontalAlignment="Left" Margin="10,169,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="startupCheckBox" Content="Start with Windows" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="startupMinCheckBox" Content="Start Minimized" HorizontalAlignment="Left" Margin="10,123,0,0" VerticalAlignment="Top"/>
                     <CheckBox x:Name="minimizeToTrayCheckBox" Content="Minimize To Tray" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
@@ -43,6 +44,7 @@
                     <CheckBox x:Name="CloseOnLoginCheckBox" Content="Close on Login" HorizontalAlignment="Left" Margin="175,100,0,0" VerticalAlignment="Top" ToolTip="Close SAM after every login."/>
                     <CheckBox x:Name="ListViewCheckBox" Content="List View" HorizontalAlignment="Left" Margin="175,77,0,0" VerticalAlignment="Top" ToolTip="Render accounts in list view instead of buttons."/>
                     <CheckBox x:Name="SandboxModeCheckBox" Content="Sandbox Mode" HorizontalAlignment="Left" Margin="175,146,0,0" VerticalAlignment="Top" ToolTip="Prevent Steam shutdown before each login attempt."/>
+					<CheckBox x:Name="usableStatsCheckBox" Content="Show usable int" HorizontalAlignment="Left" Margin="175,169,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Auto-Login">

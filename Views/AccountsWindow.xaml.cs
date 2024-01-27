@@ -578,6 +578,7 @@ namespace SAM.Views
                 firstLoad = false;
                 ReloadAccountsAsync();
             }
+            HandleTitleStats();
         }
 
         private async Task ReloadAccount(Account account)
@@ -617,11 +618,11 @@ namespace SAM.Views
                     account.EconomyBan = userBanJson.EconomyBan;
                 }
             }
+            HandleTitleStats();
         }
 
         public async Task ReloadAccountsAsync()
         {
-            Title = "SAM | Loading";
 
             List<string> steamIds = new List<string>();
 
@@ -654,6 +655,7 @@ namespace SAM.Views
                         Thread.Sleep(new Random().Next(10, 16));
                     }
                 }
+                HandleTitleStats();
             }
 
             List<dynamic> userInfos = await AccountUtils.GetUserInfosFromWepApi(new List<string>(steamIds));
@@ -699,12 +701,11 @@ namespace SAM.Views
             settings.User.LastAutoReload = DateTime.Now;
 
             SerializeAccounts();
-
-            Title = "SAM";
         }
 
         private void PostDeserializedRefresh(bool seedAcc)
         {
+            HandleTitleStats();
             SetMainScrollViewerBarsVisibility(ScrollBarVisibility.Hidden);
 
             // Dispose and reinitialize timers each time grid is refreshed as to not clog up more resources than necessary. 
@@ -1331,6 +1332,7 @@ namespace SAM.Views
                 encryptedAccounts.RemoveAt(index);
                 SerializeAccounts();
             }
+            HandleTitleStats();
         }
 
         private void Login(int index)
@@ -1344,7 +1346,6 @@ namespace SAM.Views
             }
 
             MainGrid.IsEnabled = settings.User.SandboxMode;
-            Title = "SAM | Working";
 
             new Thread(() => {
                 try
@@ -1355,7 +1356,6 @@ namespace SAM.Views
                 {
                     Dispatcher.Invoke(delegate () {
                         MainGrid.IsEnabled = true;
-                        Title = "SAM";
                     });
                 }
             }).Start();
@@ -1936,6 +1936,41 @@ namespace SAM.Views
             _Timer.Start();
         }
 
+        public void HandleTitleStats()
+        {
+            int banned = encryptedAccounts.Count(account => account.VACBanned | account.CommunityBanned | account.NumberOfGameBans != 0);
+            int usable = encryptedAccounts.Count - banned;
+
+            if (settings.User.StatsBannedAccountsInt == true)
+            {
+                if (banned > 0)
+                {
+                    this.Title = $"SAM | Banned: {banned}";
+                }
+            }
+
+            if (settings.User.StatsUsableAccountsInt == true)
+            {
+                if (usable > 0)
+                {
+                    this.Title = $"SAM | Usable: {usable}";
+                }
+            }
+
+            if (settings.User.StatsUsableAccountsInt == true && settings.User.StatsBannedAccountsInt == true)
+            {
+                if (banned > 0 && usable > 0)
+                {
+                    this.Title = $"SAM | Usable: {usable} | Banned: {banned}";
+                }
+            }
+
+            else
+            {
+                this.Title = "SAM";
+            }
+        }
+
         private void Timer_Tick(Object myObject, EventArgs myEventArgs)
         {
             if (_Stop == 0)
@@ -2185,6 +2220,7 @@ namespace SAM.Views
                 }
 
                 SerializeAccounts();
+                HandleTitleStats();
             }
         }
 
@@ -2744,6 +2780,7 @@ namespace SAM.Views
 
             deleting = false;
             exporting = false;
+            HandleTitleStats();
         }
 
         private void AccountsDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)

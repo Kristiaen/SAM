@@ -67,6 +67,8 @@ namespace SAM.Views
                     accountsPerRowSpinBox.Text = settings.File.Read(SAMSettings.ACCOUNTS_PER_ROW, SAMSettings.SECTION_GENERAL);
                     sleepTimeSpinBox.Text = settings.File.Read(SAMSettings.SLEEP_TIME, SAMSettings.SECTION_GENERAL);
                     startupCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.START_WITH_WINDOWS, SAMSettings.SECTION_GENERAL));
+                    bannedStatsCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.STATS_BANNED_ACCOUNTS_INT, SAMSettings.SECTION_GENERAL));
+                    usableStatsCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.STATS_USABLE_ACCOUNTS_INT, SAMSettings.SECTION_GENERAL));
                     startupMinCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.START_MINIMIZED, SAMSettings.SECTION_GENERAL));
                     minimizeToTrayCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.MINIMIZE_TO_TRAY, SAMSettings.SECTION_GENERAL));
                     passwordProtectCheckBox.IsChecked = Convert.ToBoolean(settings.File.Read(SAMSettings.PASSWORD_PROTECT, SAMSettings.SECTION_GENERAL));
@@ -233,6 +235,8 @@ namespace SAM.Views
                 settings.File.Write(SAMSettings.START_WITH_WINDOWS, false.ToString(), SAMSettings.SECTION_GENERAL);
             }
 
+            settings.File.Write(SAMSettings.STATS_BANNED_ACCOUNTS_INT, bannedStatsCheckBox.IsChecked.ToString(), SAMSettings.SECTION_GENERAL);
+            settings.File.Write(SAMSettings.STATS_USABLE_ACCOUNTS_INT, usableStatsCheckBox.IsChecked.ToString(), SAMSettings.SECTION_GENERAL);
             settings.File.Write(SAMSettings.START_MINIMIZED, startupMinCheckBox.IsChecked.ToString(), SAMSettings.SECTION_GENERAL);
             settings.File.Write(SAMSettings.MINIMIZE_TO_TRAY, minimizeToTrayCheckBox.IsChecked.ToString(), SAMSettings.SECTION_GENERAL);
             settings.File.Write(SAMSettings.HIDE_ADD_BUTTON, HideAddButtonCheckBox.IsChecked.ToString(), SAMSettings.SECTION_GENERAL);
@@ -407,6 +411,8 @@ namespace SAM.Views
             clearUserDataCheckBox.IsChecked = settings.Default.ClearUserData;
             rememberLoginPasswordCheckBox.IsChecked = settings.Default.RememberPassword;
             startupCheckBox.IsChecked = settings.Default.StartWithWindows;
+            bannedStatsCheckBox.IsChecked = settings.Default.StatsBannedAccountsInt;
+            usableStatsCheckBox.IsChecked = settings.Default.StatsUsableAccountsInt;
             startupMinCheckBox.IsChecked = settings.Default.StartMinimized;
             minimizeToTrayCheckBox.IsChecked = settings.Default.MinimizeToTray;
             accountsPerRowSpinBox.Text = settings.Default.AccountsPerRow.ToString();

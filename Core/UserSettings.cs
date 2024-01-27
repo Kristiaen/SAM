@@ -14,6 +14,8 @@ namespace SAM.Core
         public bool RememberPassword { get { return (bool)KeyValuePairs[SAMSettings.REMEMBER_PASSWORD]; } set { KeyValuePairs[SAMSettings.REMEMBER_PASSWORD] = value; } }
         public bool StartMinimized { get { return (bool)KeyValuePairs[SAMSettings.START_MINIMIZED]; } set{ KeyValuePairs[SAMSettings.START_MINIMIZED] = value; } }
         public bool StartWithWindows { get { return (bool)KeyValuePairs[SAMSettings.START_WITH_WINDOWS]; } set { KeyValuePairs[SAMSettings.START_WITH_WINDOWS] = value; } }
+        public bool StatsBannedAccountsInt { get { return (bool)KeyValuePairs[SAMSettings.STATS_BANNED_ACCOUNTS_INT]; } set { KeyValuePairs[SAMSettings.STATS_BANNED_ACCOUNTS_INT] = value; } }
+        public bool StatsUsableAccountsInt { get { return (bool)KeyValuePairs[SAMSettings.STATS_USABLE_ACCOUNTS_INT]; } set { KeyValuePairs[SAMSettings.STATS_USABLE_ACCOUNTS_INT] = value; } }
         public int AccountsPerRow { get { return (int)KeyValuePairs[SAMSettings.ACCOUNTS_PER_ROW]; } set { KeyValuePairs[SAMSettings.ACCOUNTS_PER_ROW] = value; } }
         public int SleepTime { get { return (int)KeyValuePairs[SAMSettings.SLEEP_TIME]; } set { KeyValuePairs[SAMSettings.SLEEP_TIME] = value; } }
         public bool CheckForUpdates { get { return (bool)KeyValuePairs[SAMSettings.CHECK_FOR_UPDATES]; } set { KeyValuePairs[SAMSettings.CHECK_FOR_UPDATES] = value;  } }
@@ -122,6 +124,8 @@ namespace SAM.Core
             { SAMSettings.REMEMBER_PASSWORD, false },
             { SAMSettings.START_MINIMIZED, false },
             { SAMSettings.START_WITH_WINDOWS, false },
+            { SAMSettings.STATS_BANNED_ACCOUNTS_INT, false },
+            { SAMSettings.STATS_USABLE_ACCOUNTS_INT, false },
             { SAMSettings.ACCOUNTS_PER_ROW, 5 },
             { SAMSettings.SLEEP_TIME, 2 },
             { SAMSettings.CHECK_FOR_UPDATES, true },

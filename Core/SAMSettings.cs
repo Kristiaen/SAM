@@ -25,6 +25,8 @@ namespace SAM.Core
         public const string REMEMBER_PASSWORD = "RememberPassword";
         public const string START_MINIMIZED = "StartMinimized";
         public const string START_WITH_WINDOWS = "StartWithWindows";
+        public const string STATS_BANNED_ACCOUNTS_INT = "BannedStatsCheckBox";
+        public const string STATS_USABLE_ACCOUNTS_INT = "UsableStatsCheckBox";
         public const string ACCOUNTS_PER_ROW = "AccountsPerRow";
         public const string SLEEP_TIME = "SleepTime";
         public const string CHECK_FOR_UPDATES = "CheckForUpdates";
@@ -97,6 +99,8 @@ namespace SAM.Core
             { REMEMBER_PASSWORD, SECTION_GENERAL },
             { START_MINIMIZED, SECTION_GENERAL },
             { START_WITH_WINDOWS, SECTION_GENERAL },
+            { STATS_BANNED_ACCOUNTS_INT, SECTION_GENERAL },
+            { STATS_USABLE_ACCOUNTS_INT, SECTION_GENERAL },
             { ACCOUNTS_PER_ROW, SECTION_GENERAL },
             { SLEEP_TIME, SECTION_GENERAL },
             { CHECK_FOR_UPDATES, SECTION_GENERAL },
