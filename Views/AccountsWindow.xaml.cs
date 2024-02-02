@@ -1095,6 +1095,7 @@ namespace SAM.Views
             var copyMenuItem = new MenuItem();
             var copyUsernameItem = new MenuItem();
             var copyPasswordItem = new MenuItem();
+            var copyUsernameAndPasswordItem = new MenuItem();
             var copyProfileUrlItem = new MenuItem();
             var copyMFATokenItem = new MenuItem();
 
@@ -1112,6 +1113,7 @@ namespace SAM.Views
             copyMenuItem.Header = "Copy";
             copyUsernameItem.Header = "Username";
             copyPasswordItem.Header = "Password";
+            copyUsernameAndPasswordItem.Header = "Username:Password";
             copyProfileUrlItem.Header = "Profile URL";
             copyMFATokenItem.Header = "2FA/MFA Token";
 
@@ -1128,6 +1130,7 @@ namespace SAM.Views
             clearTimeoutItem.Click += delegate { AccountButtonClearTimeout_Click(index); };
             copyUsernameItem.Click += delegate { CopyUsernameToClipboard(index); };
             copyPasswordItem.Click += delegate { CopyPasswordToClipboard(index); };
+            copyUsernameAndPasswordItem.Click += delegate { CopyUsernameAndPasswordToClipboard(index); };
             copyProfileUrlItem.Click += delegate { CopyProfileUrlToClipboard(index); };
 
             accountContext.Items.Add(editItem);
@@ -1139,6 +1142,7 @@ namespace SAM.Views
 
             copyMenuItem.Items.Add(copyUsernameItem);
             copyMenuItem.Items.Add(copyPasswordItem);
+            copyMenuItem.Items.Add(copyUsernameAndPasswordItem);
             copyMenuItem.Items.Add(copyProfileUrlItem);
             if (decryptedAccounts[index]?.SharedSecret != null && decryptedAccounts[index].SharedSecret.Length > 0)
                 copyMFATokenItem.Click += delegate { Copy2FA(index); };
@@ -2323,6 +2327,18 @@ namespace SAM.Views
             try
             {
                 Clipboard.SetText(decryptedAccounts[index].Password);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private void CopyUsernameAndPasswordToClipboard(int index)
+        {
+            try
+            {
+                Clipboard.SetText(decryptedAccounts[index].Name + ":" + decryptedAccounts[index].Password);
             }
             catch (Exception e)
             {
